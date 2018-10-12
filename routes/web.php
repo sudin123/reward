@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+$this->group(['middleware' => 'auth'], function() {
+    $this->get('/', 'HomeController@index')->name('home');
+    $this->post('/', 'HomeController@store')->name('save-customer');
+    $this->get('/{customer}', 'HomeController@destroy')->name('delete-customer');
+    $this->get('customer/{customer}', 'HomeController@show')->name('show-customer');
+    $this->group(['prefix' => 'points'], function() {
+        $this->get('/use/{customer}', 'HomeController@usePoints')->name('use-points');
+        $this->post('/use/{customer}', 'HomeController@savePointUsed')->name('save-used-points');
+        $this->get('/{customer}', 'HomeController@showPoints')->name('show-points');
+        $this->post('update', 'HomeController@updateRewardPoints')->name('update-points');
+    });
+});

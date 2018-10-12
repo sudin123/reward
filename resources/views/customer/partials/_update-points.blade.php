@@ -18,7 +18,6 @@
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Reward</label>
                                     <select name="reward" class="custom-select" id="inputGroupSelect02" required>
-                                        <option selected>Choose Reward Percentage</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>

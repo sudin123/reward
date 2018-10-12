@@ -73,11 +73,15 @@
 
         <main class="py-4">
             @if (\Session::has('message'))
-                <div class="alert alert-success">{{ \Session::get('message') }}</div>
+                <div class="alert alert-success text-center" role="alert">
+                    {{ \Session::get('message') }}
+                </div>
             @endif
-                @if (\Session::has('error'))
-                    <div class="alert alert-error">{{ \Session::get('error') }}</div>
-                @endif
+            @if (\Session::has('error'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ \Session::get('error') }}
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

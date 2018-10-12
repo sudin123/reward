@@ -65,12 +65,14 @@ class HomeController extends Controller
             'customer' => $customer,
             'histories' => $histories
         ];
+
         return view('customer.partials._use-points')->with($data);
     }
 
     public function updateRewardPoints()
     {
         $status = $this->customer->updatePoints();
+        Session::flash('error', 'Reward Points Updated');
         return redirect()->route('home');
     }
 

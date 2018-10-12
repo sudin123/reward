@@ -63,7 +63,7 @@
                                     <td>{{ $customer->phone  }}</td>
                                     <td>{{ $customer->reward }}</td>
                                     <td>{{ $customer->sale_amount }}</td>
-                                    <td width="25%">
+                                    <td width="30%">
                                         <a href="{{ route('show-customer', $customer->id) }}" class="btn btn-success btn-sm">Edit</a>
                                         <a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Points</a>
                                         <a href="{{ route('delete-customer', $customer->id) }}" class="btn btn-success btn-sm">Delete</a>

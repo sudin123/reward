@@ -23,7 +23,7 @@
 
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Sale Details</label>
-                                    <textarea type="text"  name="details" value="{{ $customer->sale_details ?? null }}" class="form-control"></textarea>
+                                    <textarea type="text"  name="details" value="{{ $customer->sale_details ?? null }}" class="form-control" required></textarea>
                                 </div>
 
                             </div>

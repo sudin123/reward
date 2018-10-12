@@ -68,7 +68,7 @@
                                         <a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Points</a>
                                         <a href="{{ route('delete-customer', $customer->id) }}" class="btn btn-success btn-sm">Delete</a>
                                         @if($customer->reward >= 5)
-                                            <a href="{{ route('use-points', $customer->id) }}" class="btn btn-success btn-sm">Use Ponts</a>
+                                            <a href="{{ route('use-points', $customer->id) }}" class="btn btn-success btn-sm">Use Points</a>
                                         @endif
                                     </td>
                                 </tr>

@@ -94,7 +94,7 @@ class HomeController extends Controller
     public function updateRewardPoints()
     {
         $status = $this->customer->updatePoints();
-        Session::flash('error', 'Reward Points Updated');
+        Session::flash('message', 'Reward Points Updated');
         return redirect()->route('home');
     }
 

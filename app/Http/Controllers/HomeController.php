@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\CustomerRequest;
-use App\PointHistory;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -14,6 +15,27 @@ class HomeController extends Controller
     public function __construct(Customer $customer)
     {
         $this->customer = $customer;
+    }
+
+    public function createUser()
+    {
+        if(request()->get('password') !=  request()->get('password_confirmation')){
+            Session::flash('error', 'Password Do not match');
+            return back();
+        }
+        $user = User::where('email', request()->get('email'))->first();
+        if($user){
+            Session::flash('error', 'User already Exists');
+            return back();
+        }
+
+         User::create([
+            'name' => request()->get('name'),
+            'email' => request()->get('email'),
+            'password' => Hash::make(request()->get('password')),
+        ]);
+        Session::flash('message', 'User Created Successfully');
+        return back();
     }
 
     public function index()

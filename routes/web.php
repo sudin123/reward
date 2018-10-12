@@ -14,6 +14,7 @@
 Auth::routes();
 
 $this->group(['middleware' => 'auth'], function() {
+    $this->post('create-user', 'HomeController@createUser')->name('create-user');
     $this->get('/', 'HomeController@index')->name('home');
     $this->post('/', 'HomeController@store')->name('save-customer');
     $this->get('/{customer}', 'HomeController@destroy')->name('delete-customer');

@@ -49,6 +49,11 @@ class Customer extends Model
         return false;
     }
 
+    public function getTotalUsedPoints(Customer $customer){
+        $pointsArray = $customer->histories->pluck('point_used')->toArray();
+        return array_sum($pointsArray);
+    }
+
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->format('Y-m-d');

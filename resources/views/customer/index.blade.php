@@ -50,8 +50,9 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">Points</th>
+                                <th scope="col">Reward Remaining</th>
                                 <th scope="col">Sale Amount</th>
+                                <th scope="col">Used</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -61,8 +62,9 @@
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->phone  }}</td>
-                                    <td>{{ $customer->reward }}</td>
+                                    <td>{{ $customer->reward }} %</td>
                                     <td>{{ $customer->sale_amount }}</td>
+                                    <td>{{ $customer->getTotalUsedPoints($customer) }}</td>
                                     <td width="30%">
                                         <a href="{{ route('show-customer', $customer->id) }}" class="btn btn-success btn-sm">Edit</a>
                                         <a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Points</a>

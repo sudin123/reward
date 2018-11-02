@@ -50,9 +50,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">Reward Remaining</th>
-                                <th scope="col">Sale Amount</th>
-                                <th scope="col">Used</th>
+                                <th scope="col">Remaining Reward Amount</th>
+                                <th scope="col">Used Reward Amount</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -62,15 +61,16 @@
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->phone  }}</td>
-                                    <td>{{ $customer->reward }} %</td>
-                                    <td>{{ $customer->sale_amount }}</td>
-                                    <td>{{ $customer->getTotalUsedPoints($customer) }}</td>
-                                    <td width="30%">
+                                    <td>${{ $customer->reward_amount }}</td>
+                                    <td>${{ $customer->getTotalUsedRewardAmount($customer) }}</td>
+                                    <td width="" class="table-btn-wrapper">
                                         <a href="{{ route('show-customer', $customer->id) }}" class="btn btn-success btn-sm">Edit</a>
-                                        <a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Points</a>
+                                        <a href="{{ route('add-transaction', $customer->id) }}" class="btn btn-success btn-sm">Add Transaction</a>
+                                        <a href="{{ route('get-transactions', $customer->id) }}" class="btn btn-success btn-sm">View Transactions</a>
+                                        <a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Reward</a>
                                         <a href="{{ route('delete-customer', $customer->id) }}" class="btn btn-success btn-sm">Delete</a>
-                                        @if($customer->reward >= 5)
-                                            <a href="{{ route('use-points', $customer->id) }}" class="btn btn-success btn-sm">Use Points</a>
+                                        @if($customer->reward_amount >= 5)
+                                            <a href="{{ route('use-points', $customer->id) }}" class="btn btn-success btn-sm">Use Reward</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -84,3 +84,15 @@
         </div>
     </div>
 @endsection
+<style>
+    .table-btn-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .table-btn-wrapper .btn{
+        /*flex: 1 1 100px;*/
+        margin: 2px;
+    }
+</style>

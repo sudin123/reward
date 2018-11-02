@@ -8,7 +8,7 @@ class PointHistory extends Model
 {
     protected $table = "point_histories";
 
-    protected $fillable = ["customer_id", "details", "point_used"];
+    protected $fillable = ["customer_id", "details", "point_used", ];
 
     public function customer()
     {

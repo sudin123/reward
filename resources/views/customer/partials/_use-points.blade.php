@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Use Points
-                        <span class="badge badge-pill badge-primary">Reward Points: {{ $customer->reward }}</span>
+                        Use Reward Amount
+                        <span class="badge badge-pill badge-primary">${{ $customer->reward_amount }}</span>
                     </div>
 
                     <div class="card-body">
@@ -15,9 +15,10 @@
                             <div class="modal-body">
                                 @csrf
                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+
                                 <div class="form-group">
-                                    <label for="message-text" class="col-form-label">Use Points</label>
-                                    <input type="number" class="form-control"  name="point_used"  required>
+                                    <label for="message-text" class="col-form-label">Use Reward Amount</label>
+                                    <input type="number" class="form-control"  name="reward_amount"  required>
                                 </div>
 
 
@@ -28,7 +29,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Use Points</button>
+                                <button type="submit" class="btn btn-primary">Use</button>
                             </div>
                         </form>
                     </div>
@@ -43,7 +44,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Point Used</th>
+                                <th scope="col">Used Reward Amount</th>
                                 <th scope="col">Details</th>
                             </tr>
                             </thead>
@@ -51,7 +52,7 @@
                             @foreach($histories as $key => $history)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td>{{ $history->point_used }}</td>
+                                    <td>{{ $history->reward_amount }}</td>
                                     <td>{{ $history->details }}</td>
                                 </tr>
                             @endforeach

@@ -21,6 +21,11 @@ class Customer extends Model
         return $this->hasMany(PointHistory::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function getCustomers()
     {
         $inputs = request()->except('_token');
@@ -49,8 +54,8 @@ class Customer extends Model
         return false;
     }
 
-    public function getTotalUsedPoints(Customer $customer){
-        $pointsArray = $customer->histories->pluck('point_used')->toArray();
+    public function getTotalUsedRewardAmount(Customer $customer){
+        $pointsArray = $customer->histories->pluck('reward_amount')->toArray();
         return array_sum($pointsArray);
     }
 
@@ -77,6 +82,15 @@ class Customer extends Model
         }
         $points = $customer->reward;
         $customer->reward = $points + request()->get('reward');
+        $customer->save();
+        return true;
+    }
+
+    public function updateRewards($customerId, $reward, $rewardAmount)
+    {
+        $customer = self::find($customerId);
+        $customer->reward = $customer->reward+ $reward;
+        $customer->reward_amount = $customer->reward_amount + $rewardAmount;
         $customer->save();
         return true;
     }

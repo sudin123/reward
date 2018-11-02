@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\CustomerRequest;
+use App\Transaction;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -11,10 +12,16 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
     public $customer;
+    public $transaction;
 
-    public function __construct(Customer $customer)
+    public function __construct
+    (
+        Customer $customer,
+        Transaction $transaction
+    )
     {
         $this->customer = $customer;
+        $this->transaction = $transaction;
     }
 
     public function createUser()
@@ -101,13 +108,43 @@ class HomeController extends Controller
     public function savePointUsed($customerId)
     {
         $customer = $this->customer->find($customerId);
-        if($customer->reward < request()->get('point_used')){
-            Session::flash('error', 'Point not enough');
+        if($customer->reward_amount < request()->get('reward_amount')){
+            Session::flash('error', 'Reward Amount not enough');
             return back();
         }
-        $customer->reward = $customer->reward - request()->get('point_used');
+        $customer->reward_amount = $customer->reward_amount - request()->get('reward_amount');
         $customer->save();
         (new \App\PointHistory)->saveHistory();
+        return back();
+    }
+
+    public function getTransactionForm($customerId, $transactionId = 0)
+    {
+        $data= [
+            'customerId' => $customerId,
+            'transaction' => $this->transaction->find($transactionId)
+        ];
+        return view('customer.partials._transaction')->with($data);
+
+    }
+
+    public function saveTransaction()
+    {
+        $transaction = $this->transaction->saveTransaction();
+        Session::flash('message', 'Transaction Saved Successfully');
+        return redirect()->route('home');
+    }
+
+    public function getTransactions($customerId)
+    {
+        $customer = $this->customer->find($customerId);
+        return view('customer.partials._transactions', compact('customer'));
+    }
+
+    public function deleteTransaction($transactionId)
+    {
+        $this->transaction->find($transactionId)->delete();
+
         return back();
     }
 }

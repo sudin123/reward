@@ -30,6 +30,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Use</button>
+                                <a href="{{ route('home') }}" class="btn btn-danger">Back</a>
                             </div>
                         </form>
                     </div>

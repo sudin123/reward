@@ -32,6 +32,6 @@ class Transaction extends Model
 
     public function calculateRewardAmount($rewardPercentage, $saleAmount)
     {
-        return ($rewardPercentage/100) * $saleAmount;
+        return round(($rewardPercentage/100) * $saleAmount, 2);
     }
 }

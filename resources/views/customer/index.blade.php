@@ -67,7 +67,7 @@
                                         <a href="{{ route('show-customer', $customer->id) }}" class="btn btn-success btn-sm">Edit</a>
                                         <a href="{{ route('add-transaction', $customer->id) }}" class="btn btn-success btn-sm">Add Transaction</a>
                                         <a href="{{ route('get-transactions', $customer->id) }}" class="btn btn-success btn-sm">View Transactions</a>
-                                        <a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Reward</a>
+                                        {{--<a href="{{ route('show-points', $customer->id) }}" class="btn btn-success btn-sm">Update Reward</a>--}}
                                         <a href="{{ route('delete-customer', $customer->id) }}" class="btn btn-success btn-sm">Delete</a>
                                         @if($customer->reward_amount >= 5)
                                             <a href="{{ route('use-points', $customer->id) }}" class="btn btn-success btn-sm">Use Reward</a>

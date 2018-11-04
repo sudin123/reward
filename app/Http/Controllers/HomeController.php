@@ -35,13 +35,23 @@ class HomeController extends Controller
             Session::flash('error', 'User already Exists');
             return back();
         }
-
-         User::create([
-            'name' => request()->get('name'),
-            'email' => request()->get('email'),
-            'password' => Hash::make(request()->get('password')),
-        ]);
-        Session::flash('message', 'User Created Successfully');
+        if(request()->has('user_id') && request()->get('user_id') > 0){
+            $user = User::find(request()->get('user_id'));
+            $user->update([
+                'name' => request()->get('name'),
+                'email' => request()->get('email'),
+                'password' => Hash::make(request()->get('password')),
+            ]);
+            $message = "Profile Updated";
+        }else{
+            User::create([
+                'name' => request()->get('name'),
+                'email' => request()->get('email'),
+                'password' => Hash::make(request()->get('password')),
+            ]);
+            $message = 'User Created Successfully';
+        }
+        Session::flash('message', $message);
         return back();
     }
 
@@ -146,5 +156,10 @@ class HomeController extends Controller
         $this->transaction->find($transactionId)->delete();
 
         return back();
+    }
+
+    public function editMyProfile(){
+        $user = auth()->user();
+        return view('auth.register', compact('user'));
     }
 }

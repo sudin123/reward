@@ -12,6 +12,11 @@
                         @csrf
                         <input type="hidden" name="customer_id" value="{{ $customerId }}">
                         <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Customer Name</label>
+                            <input type="name" value="{{ $customer->name ?? null }}" name="name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Customer Email</label>
                             <input type="email" value="{{ $customer->email ?? null }}" name="email" class="form-control">
                         </div>

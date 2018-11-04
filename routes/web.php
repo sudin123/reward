@@ -14,6 +14,7 @@
 Auth::routes();
 
 $this->group(['middleware' => 'auth'], function() {
+    $this->get('my-account', 'HomeController@editMyProfile')->name('edit-profile');
     $this->post('create-user', 'HomeController@createUser')->name('create-user');
     $this->get('/', 'HomeController@index')->name('home');
     $this->post('/', 'HomeController@store')->name('save-customer');

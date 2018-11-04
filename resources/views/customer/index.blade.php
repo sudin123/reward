@@ -48,6 +48,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Remaining Reward Amount</th>
@@ -59,7 +60,8 @@
                             @foreach($customers as $key => $customer)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td>{{ $customer->email }}</td>
+                                    <td>{{ $customer->name ?? 'N/a' }}</td>
+                                    <td>{{ $customer->email ?? 'N/a' }}</td>
                                     <td>{{ $customer->phone  }}</td>
                                     <td>${{ $customer->reward_amount }}</td>
                                     <td>${{ $customer->getTotalUsedRewardAmount($customer) }}</td>

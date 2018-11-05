@@ -66,10 +66,10 @@ class HomeController extends Controller
 
     public function store(CustomerRequest $customerRequest)
     {
-        if(request()->get('customer_id') == 0 && $this->customer->checkCustomerIfExists()){
-            Session::flash('error', 'Customer Already Exists');
-            return back();
-        }
+//        if(request()->get('customer_id') == 0 && $this->customer->checkCustomerIfExists()){
+//            Session::flash('error', 'Customer Already Exists');
+//            return back();
+//        }
         $customer = $this->customer->saveCustomer();
         return redirect()->route('home');
     }

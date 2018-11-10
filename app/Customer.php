@@ -89,8 +89,8 @@ class Customer extends Model
     public function updateRewards($customerId, $reward, $rewardAmount)
     {
         $customer = self::find($customerId);
-        $customer->reward = $customer->reward+ $reward;
-        $customer->reward_amount = $customer->reward_amount + $rewardAmount;
+        $customer->reward = round($customer->reward+ $reward, 2);
+        $customer->reward_amount = round($customer->reward_amount + $rewardAmount, 2);
         $customer->save();
         return true;
     }

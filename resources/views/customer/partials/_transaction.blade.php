@@ -18,7 +18,7 @@
 
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Sale Amount</label>
-                                    <input type="number" name="sale_amount" value="{{$transaction->sale_amount ?? null}}" class="form-control">
+                                    <input type="text" name="sale_amount" value="{{$transaction->sale_amount ?? null}}" class="form-control">
                                 </div>
 
                                 <div class="form-group">

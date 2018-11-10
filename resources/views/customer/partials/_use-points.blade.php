@@ -18,7 +18,7 @@
 
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Use Reward Amount</label>
-                                    <input type="number" class="form-control"  name="reward_amount"  required>
+                                    <input type="text" class="form-control"  name="reward_amount"  required>
                                 </div>
 
 

@@ -22,7 +22,7 @@ class Transaction extends Model
         {
             $transaction->$key = $value;
         }
-        $transaction->reward_amount = $this->calculateRewardAmount(request()->get('reward'), request()->get('sale_amount'));
+        $transaction->reward_amount = round($this->calculateRewardAmount(request()->get('reward'), request()->get('sale_amount')), 2);
         if($transaction->save()){
             (new Customer)->updateRewards(request()->get('customer_id'), request()->get('reward'), $transaction->reward_amount);
             return true;
